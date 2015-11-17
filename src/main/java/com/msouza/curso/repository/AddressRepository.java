@@ -8,13 +8,16 @@ import com.msouza.curso.entity.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
+	// busca por city e orena por type desc
+	List<Address> findByCityOrderByTypeDesc(String city);
+	
 	// busca por city ou street conforme a igualdade da sequência de carcteres
 	List<Address> findByCityStartingWithOrStreetEndingWith(String city, String street);
 	
 	// busca por street conforme o parametro conhecida com qualquer parte do campo street
 	List<Address> findByStreetContaining(String street);
 	
-	// busca por streer conforme o termino da palavra
+	// busca por street conforme o termino da palavra
 	List<Address> findByStreetEndingWith(String street);
 
 	// busca por city conforme o início da palavra
