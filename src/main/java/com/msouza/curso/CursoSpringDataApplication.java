@@ -58,60 +58,83 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// testPagination();
 		// testByAge();
 		// testByFistNameLike();
-//		testByandOr();
-//		testByBetween();
-//		testByLastNameAndBetween();
-//		testByGreaterAndLess();
-//		testByGreaterAndLessEqual();
-		testByFistNameGreaterThan();
+		// testByandOr();
+		// testByBetween();
+		// testByLastNameAndBetween();
+		// testByGreaterAndLess();
+		// testByGreaterAndLessEqual();
+		// testByFistNameGreaterThan();
+		// testByStartAndAnd();
+		// testByContaining();
+		testByAddressStartingAndEnding();
 
+	}
+
+	private void testByAddressStartingAndEnding() {
+		List<Address> a1 = addressRepository.findByCityStartingWithOrStreetEndingWith("Rio", "102");
+		a1.forEach(System.out::println);
+		
+	}
+
+	private void testByContaining() {
+		List<Address> a1 = addressRepository.findByStreetContaining("Ipanema");
+		a1.forEach(System.out::println);
+
+	}
+
+	private void testByStartAndAnd() {
+		List<Address> a1 = addressRepository.findByCityStartingWith("Rio");
+		a1.forEach(System.out::println);
+		System.out.println("=========================");
+		List<Address> a2 = addressRepository.findByStreetEndingWith("102");
+		a2.forEach(System.out::println);
 	}
 
 	private void testByFistNameGreaterThan() {
 		List<Person> p1 = personRepository.findByFirstNameGreaterThan("J");
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void testByGreaterAndLessEqual() {
 		List<Person> p1 = personRepository.findByAgeGreaterThanEqual(28);
 		p1.forEach(System.out::println);
-		
+
 		System.out.println("=========================");
-		
+
 		List<Person> p2 = personRepository.findByAgeLessThanEqual(29);
 		p2.forEach(System.out::println);
-		
+
 	}
 
 	private void testByGreaterAndLess() {
 		List<Person> p1 = personRepository.findByAgeGreaterThan(28);
 		p1.forEach(System.out::println);
-		
+
 		System.out.println("=========================");
-		
+
 		List<Person> p2 = personRepository.findByAgeLessThan(28);
 		p2.forEach(System.out::println);
-		
+
 	}
 
 	private void testByLastNameAndBetween() {
 		List<Person> p1 = personRepository.findByLastNameAndAgeBetween("Figueira", 25, 36);
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void testByBetween() {
 		List<Person> p1 = personRepository.findByAgeBetween(24, 29);
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void testByandOr() {
 		Person p1 = personRepository.findByFirstNameAndLastName("Aline", "Gomes");
 		System.out.println(p1.toString());
 		System.out.println("=========================");
-		
+
 		List<Person> p2 = personRepository.findByAgeOrFirstName(36, "Bruna");
 		p2.forEach(System.out::println);
 	}
