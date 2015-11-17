@@ -56,32 +56,57 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// testFindByIds();
 		// testExists();
 		// testPagination();
-		
-//		testByAge();
-		testByFistNameLike();
 
+		// testByAge();
+		// testByFistNameLike();
+
+//		testByandOr();
+//		testByBetween();
+		testByLastNameAndBetween();
+
+	}
+
+	private void testByLastNameAndBetween() {
+		List<Person> p1 = personRepository.findByLastNameAndAgeBetween("Figueira", 25, 36);
+		p1.forEach(System.out::println);
+		
+	}
+
+	private void testByBetween() {
+		List<Person> p1 = personRepository.findByAgeBetween(24, 29);
+		p1.forEach(System.out::println);
+		
+	}
+
+	private void testByandOr() {
+		Person p1 = personRepository.findByFirstNameAndLastName("Aline", "Gomes");
+		System.out.println(p1.toString());
+		System.out.println("=========================");
+		
+		List<Person> p2 = personRepository.findByAgeOrFirstName(36, "Bruna");
+		p2.forEach(System.out::println);
 	}
 
 	private void testByFistNameLike() {
 		List<Person> p1 = personRepository.findByFirstNameLike("Aline");
 		p1.forEach(System.out::println);
-		
+
 		System.out.println("=========================");
-		
+
 		List<Person> p2 = personRepository.findByFirstNameNotLike("Aline");
 		p2.forEach(System.out::println);
-		
+
 	}
 
 	private void testByAge() {
 		List<Person> p1 = personRepository.findByAge(36);
 		p1.forEach(System.out::println);
-		
+
 		System.out.println("=========================");
-		
+
 		List<Person> p2 = personRepository.findByAgeNot(36);
 		p2.forEach(System.out::println);
-		
+
 	}
 
 	private void testPagination() {

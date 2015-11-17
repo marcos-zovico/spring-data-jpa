@@ -8,6 +8,19 @@ import com.msouza.curso.entity.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
+	
+	// busca por lastName and age between
+	List<Person> findByLastNameAndAgeBetween(String lastName, int min, int max);
+	
+	// busca por age usando between
+	List<Person> findByAgeBetween(int min, int max);
+	
+	// busca por age or firstName via parametros
+	List<Person> findByAgeOrFirstName(Integer age, String firstName);
+	
+	// busca por firstName and lastName via parametros
+	Person findByFirstNameAndLastName(String firstName, String lastName);
+	
 	// busca por fistName igual ao parametro
 	List<Person> findByFirstNameLike(String firstName);
 
