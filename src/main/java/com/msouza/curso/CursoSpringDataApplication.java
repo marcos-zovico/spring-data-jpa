@@ -53,32 +53,57 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// testSavePersons();
 		// testDeletePersons();
 		// testFindAndSort();
-//		testFindByIds();
-//		testExists();
-		testPagination();
+		// testFindByIds();
+		// testExists();
+		// testPagination();
+		
+//		testByAge();
+		testByFistNameLike();
+
+	}
+
+	private void testByFistNameLike() {
+		List<Person> p1 = personRepository.findByFirstNameLike("Aline");
+		p1.forEach(System.out::println);
+		
+		System.out.println("=========================");
+		
+		List<Person> p2 = personRepository.findByFirstNameNotLike("Aline");
+		p2.forEach(System.out::println);
+		
+	}
+
+	private void testByAge() {
+		List<Person> p1 = personRepository.findByAge(36);
+		p1.forEach(System.out::println);
+		
+		System.out.println("=========================");
+		
+		List<Person> p2 = personRepository.findByAgeNot(36);
+		p2.forEach(System.out::println);
 		
 	}
 
 	private void testPagination() {
-		
-   Page<Person> pages = personRepository.findAll(new PageRequest(0,2));
-   pages.getContent().forEach(System.out::println);
-   
-   pages = personRepository.findAll(new PageRequest(1,2));
-   pages.getContent().forEach(System.out::println);
-   
-   pages = personRepository.findAll(new PageRequest(2,2));
-   pages.getContent().forEach(System.out::println);
-   	
+
+		Page<Person> pages = personRepository.findAll(new PageRequest(0, 2));
+		pages.getContent().forEach(System.out::println);
+
+		pages = personRepository.findAll(new PageRequest(1, 2));
+		pages.getContent().forEach(System.out::println);
+
+		pages = personRepository.findAll(new PageRequest(2, 2));
+		pages.getContent().forEach(System.out::println);
+
 	}
 
 	private void testExists() {
 		boolean p1 = personRepository.exists(5L);
 		System.out.println("P1 is " + p1);
-		
+
 		boolean p2 = personRepository.exists(50L);
 		System.out.println("P2 is " + p2);
-		
+
 	}
 
 	private void testFindByIds() {
