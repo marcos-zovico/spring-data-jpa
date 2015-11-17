@@ -69,8 +69,34 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 //		testByAddressStartingAndEnding();
 //		findByInAndNotIn();
 //		testByOrderBy();
-		testIgnoreCase();
+//		testIgnoreCase();
+//		testByNotNullAndNull();
+//		testPhonesByNumber();
+		testFindByGreaterThanAndOrder();
 
+	}
+
+	private void testFindByGreaterThanAndOrder() {
+		List<Person> p1 = personRepository.findByAgeGreaterThanOrderByFirstNameAscLastNameAsc(22);
+		p1.forEach(System.out::println);
+		
+	}
+
+	private void testPhonesByNumber() {
+		List<Person> p1 = personRepository.findByPhonesNumberStartingWith("4");
+		p1.forEach(System.out::println);
+		
+	}
+
+	private void testByNotNullAndNull() {
+		List<Person> p1 = personRepository.findByDocumentIsNull();
+		p1.forEach(System.out::println);
+		
+		System.out.println("=== === === === === === === ===");
+		
+		List<Person> p2 = personRepository.findByDocumentIsNotNull();
+		p2.forEach(System.out::println);
+		
 	}
 
 	private void testIgnoreCase() {

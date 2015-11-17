@@ -8,18 +8,30 @@ import com.msouza.curso.entity.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
+	// busca por age e ordena por firstName de [a-z] e lastName de [a-z]
+	List<Person> findByAgeGreaterThanOrderByFirstNameAscLastNameAsc(Integer age);
+	
+	// busca por number via phones mapeado em Person
+	List<Person> findByPhonesNumberStartingWith(String number);
+	
+	// busca por linhas em person que tenham document_id diferentes de null
+	List<Person> findByDocumentIsNotNull();
+
+	// busca por linhas em person que tenham document id iguais a null
+	List<Person> findByDocumentIsNull();
+
 	// busca por fisrtNme ignorando letras maiúsculas e minúsculas
 	List<Person> findByFirstNameIgnoreCase(String firstName);
-	
+
 	// busca por age baseado em uma lista de parametros que será negada
-	List<Person> findByAgeNotIn(Integer...ages);
-	
+	List<Person> findByAgeNotIn(Integer... ages);
+
 	// busca por age baseada em uma lista de parametros
 	List<Person> findByAgeIn(Integer... ages);
-	
+
 	// busca por firstNa me maior que o valor informado
 	List<Person> findByFirstNameGreaterThan(String firstName);
-	
+
 	// busca por age menor ou igual que so parametro
 	List<Person> findByAgeLessThanEqual(Integer age);
 
