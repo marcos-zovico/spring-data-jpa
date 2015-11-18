@@ -14,15 +14,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "ADDRESS")
+@NamedQuery(name = "Address.buscaPorCidade",
+			query = "select a from Address a where a.city like ?1 "
+		    )
+@NamedNativeQueries({
+		@NamedNativeQuery(name= "Address.buscarPorEndereco",
+						  query = "select * from Address where city like ?1 and street like ?2",
+						  resultClass = Address.class
+				)
+})
 public class Address implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public enum TypeAddres{
