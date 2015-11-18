@@ -66,57 +66,85 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// testByFistNameGreaterThan();
 		// testByStartAndAnd();
 		// testByContaining();
-//		testByAddressStartingAndEnding();
-//		findByInAndNotIn();
-//		testByOrderBy();
-//		testIgnoreCase();
-//		testByNotNullAndNull();
-//		testPhonesByNumber();
-		testFindByGreaterThanAndOrder();
+		// testByAddressStartingAndEnding();
+		// findByInAndNotIn();
+		// testByOrderBy();
+		// testIgnoreCase();
+		// testByNotNullAndNull();
+		// testPhonesByNumber();
+		// testFindByGreaterThanAndOrder();
+		// findFirstName();
+		// findFirstNameOrAge();
+		// findFirstNameAndAge();
+		// findPersonByCpfEndsWith();
+
+	}
+
+	private void findPersonByCpfEndsWith() {
+		List<Person> p1 = personRepository.findByDocumentCPFEndsWith("89");
+		p1.forEach(System.out::println);
+
+	}
+
+	private void findFirstNameAndAge() {
+		List<Person> p1 = personRepository.findByFirstNameAndAge("Aline", 36);
+		p1.forEach(System.out::println);
+
+	}
+
+	private void findFirstNameOrAge() {
+		List<Person> p1 = personRepository.findByFirstNameOrAge("Aline", 36);
+		p1.forEach(System.out::println);
+
+	}
+
+	private void findFirstName() {
+		List<Person> p1 = personRepository.findByFirstName("Aline");
+		p1.forEach(System.out::println);
 
 	}
 
 	private void testFindByGreaterThanAndOrder() {
 		List<Person> p1 = personRepository.findByAgeGreaterThanOrderByFirstNameAscLastNameAsc(22);
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void testPhonesByNumber() {
 		List<Person> p1 = personRepository.findByPhonesNumberStartingWith("4");
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void testByNotNullAndNull() {
 		List<Person> p1 = personRepository.findByDocumentIsNull();
 		p1.forEach(System.out::println);
-		
+
 		System.out.println("=== === === === === === === ===");
-		
+
 		List<Person> p2 = personRepository.findByDocumentIsNotNull();
 		p2.forEach(System.out::println);
-		
+
 	}
 
 	private void testIgnoreCase() {
 		List<Person> p1 = personRepository.findByFirstNameIgnoreCase("ALINE");
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void testByOrderBy() {
 		List<Address> a1 = addressRepository.findByCityOrderByTypeDesc("Rio de Janeiro");
 		a1.forEach(System.out::println);
-		
+
 	}
 
 	private void findByInAndNotIn() {
 		List<Person> p1 = personRepository.findByAgeIn(24, 28, 36, 45);
 		p1.forEach(System.out::println);
-		
+
 		System.out.println("=== === === === === === === j");
-		
+
 		List<Person> p2 = personRepository.findByAgeNotIn(24, 28, 36, 45);
 		p2.forEach(System.out::println);
 	}
@@ -124,7 +152,7 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 	private void testByAddressStartingAndEnding() {
 		List<Address> a1 = addressRepository.findByCityStartingWithOrStreetEndingWith("Rio", "102");
 		a1.forEach(System.out::println);
-		
+
 	}
 
 	private void testByContaining() {
