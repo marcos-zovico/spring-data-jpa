@@ -77,7 +77,27 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// findFirstNameOrAge();
 		// findFirstNameAndAge();
 		// findPersonByCpfEndsWith();
+//		findPersonByAges();
+//		findPersonByNames();
+		findDocumentByCpfStart();
 
+	}
+
+	private void findDocumentByCpfStart() {
+		List<Document> documents = documentRepository.findByCpfStartWith("67");
+		documents.forEach(System.out::println);
+	}
+
+	private void findPersonByNames() {
+		List<Person> p1 = personRepository.findByFirstNames("Aline", "Gilson", "Juliano");
+		p1.forEach(System.out::println);
+		
+	}
+
+	private void findPersonByAges() {
+		List<Person> p1 = personRepository.findByAgeBetween(28, 36);
+		p1.forEach(System.out::println);
+		
 	}
 
 	private void findPersonByCpfEndsWith() {
