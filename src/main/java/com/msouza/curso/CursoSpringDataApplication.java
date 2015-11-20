@@ -19,10 +19,12 @@ import com.msouza.curso.entity.Document;
 import com.msouza.curso.entity.Person;
 import com.msouza.curso.entity.Phone;
 import com.msouza.curso.entity.Phone.TypePhone;
+import com.msouza.curso.entity.User;
 import com.msouza.curso.repository.AddressRepository;
 import com.msouza.curso.repository.DocumentRepository;
 import com.msouza.curso.repository.PersonRepository;
 import com.msouza.curso.repository.PhoneRepository;
+import com.msouza.curso.repository.UserRepository;
 
 @SpringBootApplication
 // @ImportResource(value = "spring-data.xml")
@@ -39,6 +41,9 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 
 	@Autowired
 	private PhoneRepository phoneRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoSpringDataApplication.class, args);
@@ -88,9 +93,27 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 //		deletePhone();
 //		findFisrtLastName();
 //		findTopAge();
-		findFirst3AndTop3();
+//		findFirst3AndTop3();
+		testUser();
+		
 
 	}
+
+	private void testUser() {
+
+		User user = new User();
+		user.setUsername("marcio@email.com");
+		user.setPasword("lqwy23553");
+		
+		if(user.isNew()){
+			userRepository.save(user);
+		}
+		
+		User user2 = userRepository.findOne(user.getId());
+		
+		System.out.println(user2.toString());
+	}
+	
 
 	private void findFirst3AndTop3() {
 		List<Person> first3 = personRepository.findFirst3ByOrderByLastNameAsc();
