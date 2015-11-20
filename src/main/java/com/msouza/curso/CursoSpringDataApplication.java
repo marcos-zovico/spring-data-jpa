@@ -81,8 +81,18 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 //		findPersonByNames();
 //		findDocumentByCpfStart();
 //		findAddressPorCidade();
-		findAddressPorEndereco();
+//		findAddressPorEndereco();
+		
+		testFunctioAddress();
 
+	}
+
+	private void testFunctioAddress() {
+		String ad1 = addressRepository.functionConcatenaEndereco(7L);
+		System.out.println(ad1.toString());
+		
+		String ad2 = addressRepository.functionNativeQueryConcatenaEndereco(2L);
+		System.out.println(ad2.toString());
 	}
 
 	private void findAddressPorEndereco() {

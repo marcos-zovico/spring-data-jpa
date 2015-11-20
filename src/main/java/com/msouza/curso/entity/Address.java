@@ -30,7 +30,11 @@ import javax.persistence.Table;
 		@NamedNativeQuery(name= "Address.buscarPorEndereco",
 						  query = "select * from Address where city like ?1 and street like ?2",
 						  resultClass = Address.class
-				)
+				),
+		@NamedNativeQuery(
+				name = "Address.functionConcatenaEndereco",
+				query = "select funcConcatAddress(?1)"
+	    )
 })
 public class Address implements Serializable {
 

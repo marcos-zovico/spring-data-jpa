@@ -9,6 +9,13 @@ import com.msouza.curso.entity.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
+	@Query(value = "select funcConcatAddress(?1)", nativeQuery = true)
+	String functionNativeQueryConcatenaEndereco(Long id);
+	
+	// usando functiom com @NamedNativQuery
+	String functionConcatenaEndereco(Long ig);
+	
+	
 	@Query( value = "select * from Address where city like ?1 and street like ?2",
 			nativeQuery = true)
 	Address buscaPorCidadeRua(String city, String street);
