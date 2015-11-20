@@ -85,8 +85,38 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// testFunctioAddress();
 //		testProcedureCPF();
 //		updatePhones();
-		deletePhone();
+//		deletePhone();
+//		findFisrtLastName();
+//		findTopAge();
+		findFirst3AndTop3();
 
+	}
+
+	private void findFirst3AndTop3() {
+		List<Person> first3 = personRepository.findFirst3ByOrderByLastNameAsc();
+		first3.forEach(System.out::println);
+		
+		List<Person> top3 = personRepository.findTop3ByOrderByAgeAsc();
+		top3.forEach(System.out::println);
+		
+	}
+
+	private void findTopAge() {
+		Person p1 = personRepository.findTopByOrderByAgeAsc();
+		System.out.println(p1);
+		
+		Person p2 = personRepository.findTopByOrderByAgeDesc();
+		System.out.println(p2);
+		
+	}
+
+	private void findFisrtLastName() {
+	Person p1 = personRepository.findFirstByOrderByLastNameAsc();
+	System.out.println(p1);
+	
+	Person p2 = personRepository.findFirstByOrderByLastNameDesc();
+	System.out.println(p2);
+		
 	}
 
 	private void deletePhone() {

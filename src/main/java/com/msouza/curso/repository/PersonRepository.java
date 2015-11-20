@@ -10,6 +10,19 @@ import com.msouza.curso.entity.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
+	List<Person> findTop3ByOrderByAgeAsc();
+	
+	List<Person> findFirst3ByOrderByLastNameAsc();
+	
+	
+	Person findTopByOrderByAgeAsc();
+	
+	Person findTopByOrderByAgeDesc();
+	
+	Person findFirstByOrderByLastNameDesc();
+	
+	Person findFirstByOrderByLastNameAsc();
+	
 	@Query("select p from Person p where p.firstName in :names order by p.age asc")
 	List<Person> findByFirstNames(@Param("names") String... firstNames);
 	
