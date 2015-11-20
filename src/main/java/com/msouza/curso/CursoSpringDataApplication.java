@@ -77,20 +77,29 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		// findFirstNameOrAge();
 		// findFirstNameAndAge();
 		// findPersonByCpfEndsWith();
-//		findPersonByAges();
-//		findPersonByNames();
-//		findDocumentByCpfStart();
-//		findAddressPorCidade();
-//		findAddressPorEndereco();
-		
-		testFunctioAddress();
+		// findPersonByAges();
+		// findPersonByNames();
+		// findDocumentByCpfStart();
+		// findAddressPorCidade();
+		// findAddressPorEndereco();
+		// testFunctioAddress();
+		testProcedureCPF();
+
+	}
+
+	private void testProcedureCPF() {
+		String cpf1 = documentRepository.replaceCPF(2L);
+		System.out.println("CPF 1 - " + cpf1.toString());
+
+		String cpf2 = documentRepository.procedureReplaceCPF(5L);
+		System.out.println("CPF 2 - " + cpf2.toString());
 
 	}
 
 	private void testFunctioAddress() {
 		String ad1 = addressRepository.functionConcatenaEndereco(7L);
 		System.out.println(ad1.toString());
-		
+
 		String ad2 = addressRepository.functionNativeQueryConcatenaEndereco(2L);
 		System.out.println(ad2.toString());
 	}
@@ -98,7 +107,7 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 	private void findAddressPorEndereco() {
 		Address a = addressRepository.buscarPorEndereco("Rio de Janeiro", "Av copa cabana, 102");
 		System.out.println(a.toString());
-		
+
 		Address a2 = addressRepository.buscaPorCidadeRua("Rio de Janeiro", "Av Ipanema, 36");
 		System.out.println(a2.toString());
 	}
@@ -116,13 +125,13 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 	private void findPersonByNames() {
 		List<Person> p1 = personRepository.findByFirstNames("Aline", "Gilson", "Juliano");
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void findPersonByAges() {
 		List<Person> p1 = personRepository.findByAgeBetween(28, 36);
 		p1.forEach(System.out::println);
-		
+
 	}
 
 	private void findPersonByCpfEndsWith() {
